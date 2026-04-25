@@ -68,8 +68,10 @@ jobs:
 
       - name: Publish to npm
         if: steps.tag.outputs.exists == 'false'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        # Auth via npm Trusted Publishing (OIDC). No NPM_TOKEN secret needed.
+        # The id-token: write permission above lets GH Actions mint an OIDC
+        # token; npm validates it against the trusted publisher config in
+        # the package settings on npmjs.com.
         run: npm publish --access public --provenance
 
       - name: Create GitHub Release
