@@ -29,8 +29,15 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: '22'
+
+      # npm Trusted Publishing (OIDC) needs npm >= 11.5. Node 22 ships
+      # with npm 10.x, so upgrade explicitly. Skipping `registry-url` in
+      # setup-node above is intentional: it avoids writing an .npmrc with
+      # a placeholder _authToken, which would otherwise be sent to npm
+      # and rejected, masking the OIDC flow.
+      - name: Upgrade npm
+        run: npm install -g npm@latest
 
       - name: Read version from package.json
         id: pkg
