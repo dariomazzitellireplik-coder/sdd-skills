@@ -36,8 +36,12 @@ jobs:
       # setup-node above is intentional: it avoids writing an .npmrc with
       # a placeholder _authToken, which would otherwise be sent to npm
       # and rejected, masking the OIDC flow.
+      #
+      # Pinned to a specific version: `npm install -g npm@latest` triggers
+      # a self-upgrade path in npm 10.x bundled with Node 22 that fails
+      # with "Cannot find module 'promise-retry'" inside arborist.
       - name: Upgrade npm
-        run: npm install -g npm@latest
+        run: npm install -g npm@11.5.2
 
       - name: Read version from package.json
         id: pkg
