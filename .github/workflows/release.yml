@@ -1,0 +1,82 @@
+name: Release
+
+# Source of truth: package.json "version" field.
+# On every push to main, read version. If a matching tag does NOT exist:
+#   1. Create + push the tag
+#   2. Publish to npm
+#   3. Create a GitHub Release
+# If the tag exists, the job is a no-op (idempotent).
+#
+# Bump version in a PR + merge to main -> release fires automatically.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write       # push tags, create releases
+  id-token: write       # npm provenance attestation
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Read version from package.json
+        id: pkg
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Check if tag already exists
+        id: tag
+        run: |
+          if git rev-parse "v${{ steps.pkg.outputs.version }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "Tag v${{ steps.pkg.outputs.version }} already exists. Skipping release."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Smoke-test CLI
+        if: steps.tag.outputs.exists == 'false'
+        run: node bin/cli.js help > /dev/null
+
+      - name: Verify package builds
+        if: steps.tag.outputs.exists == 'false'
+        run: npm pack --dry-run
+
+      - name: Configure git identity
+        if: steps.tag.outputs.exists == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Create and push tag
+        if: steps.tag.outputs.exists == 'false'
+        run: |
+          git tag -a "v${{ steps.pkg.outputs.version }}" -m "v${{ steps.pkg.outputs.version }}"
+          git push origin "v${{ steps.pkg.outputs.version }}"
+
+      - name: Publish to npm
+        if: steps.tag.outputs.exists == 'false'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public --provenance
+
+      - name: Create GitHub Release
+        if: steps.tag.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "v${{ steps.pkg.outputs.version }}" \
+            --title "v${{ steps.pkg.outputs.version }}" \
+            --generate-notes
