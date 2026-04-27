@@ -5,3 +5,9 @@ disable-model-invocation: true
 ---
 
 I don't know this area of code well. Go up a layer of abstraction. Give me a map of all the relevant modules and callers.
+
+<!--
+Adapted from https://github.com/mattpocock/skills (verbatim)
+Copyright (c) 2026 Matt Pocock — MIT License
+See NOTICES.md in this distribution for the full license text.
+-->

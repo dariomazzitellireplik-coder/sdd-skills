@@ -128,3 +128,9 @@ After filing, print all issue URLs (with blocking relationships summarized) and 
 ### 5. Continue the session
 
 Keep going until the user says they're done. Each issue is independent — don't batch them.
+
+<!--
+Adapted from https://github.com/mattpocock/skills (verbatim)
+Copyright (c) 2026 Matt Pocock — MIT License
+See NOTICES.md in this distribution for the full license text.
+-->

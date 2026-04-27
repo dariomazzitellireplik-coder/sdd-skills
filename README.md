@@ -176,8 +176,14 @@ Issues and PRs welcome. The skills themselves live under `skills/` and the syste
 
 ## Credits
 
-Several reference materials in `sdd/templates/` and `sdd/references/tdd/` are adapted from Matt Pocock's work — kudos for the originals.
+The 9 SDD skills (`skills/sdd-*`) and CLI are original to this project.
+
+The 5 companion skills under `skills/{grill-me,zoom-out,caveman,qa,write-a-skill}/` are copied verbatim from [mattpocock/skills](https://github.com/mattpocock/skills) (MIT). The "caveman mode" concept that `skills/caveman` implements originated in [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) (MIT) — credit for the underlying idea belongs to Julius Brussee.
+
+Several reference materials in `sdd/templates/` and `sdd/references/tdd/` are also adapted from Matt Pocock's work.
+
+See [NOTICES.md](NOTICES.md) for the full third-party license texts.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). Bundled third-party content retains its own MIT terms; see [NOTICES.md](NOTICES.md).
