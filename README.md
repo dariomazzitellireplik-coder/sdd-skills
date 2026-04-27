@@ -20,7 +20,7 @@ Pick **one** of the two patterns:
 npx @dariomazzitelli/sdd-skills install
 ```
 
-Installs the 9 skills to `~/.claude/skills/sdd-*/` and the SDD reference docs (templates, SPEC, HOWTO) to `./.claude/sdd/` in the current project.
+Installs the 9 SDD skills + 5 companion utilities to `~/.claude/skills/` and the SDD reference docs (templates, SPEC, HOWTO) to `./.claude/sdd/` in the current project.
 
 ### Local — everything scoped to one project
 
@@ -85,17 +85,19 @@ It's particularly useful for:
 
 It's **not** the right tool for trivial bug fixes, dependency bumps, typos, or mechanical refactors.
 
-## Optional companion skills
+## Companion utilities (bundled)
 
-The SDD skills compose with — but do not require — these utilities. Install them separately if you want the full experience:
+The CLI also installs 5 general-purpose skills that the SDD phases lean on. They're useful on their own, but a few SDD skills compose with them directly (e.g. `sdd-requirement` and `sdd-plan` invoke `grill-me`).
 
-- `grill-me` — interview pattern (one question at a time, with a recommended answer)
-- `zoom-out` — codebase exploration helper
-- `caveman` — compressed-output mode for long sessions
-- `qa` — conversational QA with background exploration
-- `write-a-skill` — meta-skill for creating new skills
+| Skill | What it does |
+|---|---|
+| `grill-me` | Interview pattern — one question at a time, each with a recommended answer |
+| `zoom-out` | Codebase exploration helper — go up a layer of abstraction |
+| `caveman` | Ultra-compressed output mode (~75% fewer tokens) for long sessions |
+| `qa` | Conversational QA — user reports bugs, agent files GitHub issues with codebase context |
+| `write-a-skill` | Meta-skill for authoring new skills with proper structure |
 
-The SDD pipeline works without them; they just enrich specific phases.
+The SDD pipeline runs fine without explicitly invoking them; they just enrich specific phases when triggered.
 
 ## CLI reference
 
@@ -146,6 +148,11 @@ npx @dariomazzitelli/sdd-skills uninstall --local  # local skills + project docs
   sdd-docs/SKILL.md
   sdd-ship/SKILL.md
   sdd-status/SKILL.md
+  grill-me/SKILL.md
+  zoom-out/SKILL.md
+  caveman/SKILL.md
+  qa/SKILL.md
+  write-a-skill/SKILL.md
 
 <your-project>/
   .claude/sdd/

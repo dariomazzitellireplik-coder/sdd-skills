@@ -10,7 +10,7 @@ const SDD_SRC = path.join(PKG_ROOT, 'sdd');
 
 const VERSION = require(path.join(PKG_ROOT, 'package.json')).version;
 
-const SKILL_NAMES = [
+const SDD_SKILL_NAMES = [
   'sdd-init',
   'sdd-requirement',
   'sdd-research',
@@ -21,6 +21,16 @@ const SKILL_NAMES = [
   'sdd-ship',
   'sdd-status',
 ];
+
+const COMPANION_SKILL_NAMES = [
+  'grill-me',
+  'zoom-out',
+  'caveman',
+  'qa',
+  'write-a-skill',
+];
+
+const SKILL_NAMES = [...SDD_SKILL_NAMES, ...COMPANION_SKILL_NAMES];
 
 function parseArgs(argv) {
   const args = { _: [], flags: {} };
@@ -38,7 +48,8 @@ function parseArgs(argv) {
 function help() {
   console.log(`sdd-skills v${VERSION}
 
-A 9-phase Spec-Driven Development workflow for Claude Code.
+A 9-phase Spec-Driven Development workflow for Claude Code, plus
+${COMPANION_SKILL_NAMES.length} companion utility skills bundled alongside.
 
 Usage:
   sdd-skills <command> [options]
@@ -53,7 +64,7 @@ Commands:
 
 Options:
   --local               Install skills to ./.claude/skills/ instead of ~/.claude/skills/
-  --skills-only         Only install/update/uninstall the 9 skill folders
+  --skills-only         Only install/update/uninstall the skill folders
   --docs-only           Only install/update/uninstall the .claude/sdd/ docs
   --force               Overwrite existing files
   --target <path>       Custom target dir (overrides --local default; advanced)
@@ -237,9 +248,15 @@ function cmdList(args) {
   console.log(`sdd-skills v${VERSION}`);
   console.log('');
   console.log(`Skills directory: ${skillsTarget}`);
-  for (const name of SKILL_NAMES) {
+  console.log(`  SDD pipeline:`);
+  for (const name of SDD_SKILL_NAMES) {
     const present = exists(path.join(skillsTarget, name));
-    console.log(`  [${present ? 'x' : ' '}] ${name}`);
+    console.log(`    [${present ? 'x' : ' '}] ${name}`);
+  }
+  console.log(`  Companion utilities:`);
+  for (const name of COMPANION_SKILL_NAMES) {
+    const present = exists(path.join(skillsTarget, name));
+    console.log(`    [${present ? 'x' : ' '}] ${name}`);
   }
   console.log('');
   console.log(`Project docs:     ${docsTarget}`);
