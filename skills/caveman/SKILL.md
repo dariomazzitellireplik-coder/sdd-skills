@@ -47,3 +47,14 @@ Example -- destructive op:
 > ```
 >
 > Caveman resume. Verify backup exist first.
+
+<!--
+Adapted from https://github.com/mattpocock/skills (verbatim).
+Copyright (c) 2026 Matt Pocock — MIT License
+
+"Caveman mode" concept originated by Julius Brussee:
+https://github.com/JuliusBrussee/caveman
+Copyright (c) 2026 Julius Brussee — MIT License
+
+See NOTICES.md in this distribution for the full license texts.
+-->

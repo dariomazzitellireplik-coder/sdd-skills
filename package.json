@@ -1,6 +1,6 @@
 {
   "name": "@dariomazzitelli/sdd-skills",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A 9-phase Spec-Driven Development workflow for Claude Code, distributed as installable skills.",
   "bin": {
     "sdd-skills": "bin/cli.js"
@@ -10,7 +10,8 @@
     "skills/",
     "sdd/",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "NOTICES.md"
   ],
   "scripts": {
     "test": "node bin/cli.js help > /dev/null && echo OK"

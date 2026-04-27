@@ -8,3 +8,9 @@ Interview me relentlessly about every aspect of this plan until we reach a share
 Ask the questions one at a time.
 
 If a question can be answered by exploring the codebase, explore the codebase instead.
+
+<!--
+Adapted from https://github.com/mattpocock/skills (verbatim)
+Copyright (c) 2026 Matt Pocock — MIT License
+See NOTICES.md in this distribution for the full license text.
+-->

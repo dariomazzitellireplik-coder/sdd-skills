@@ -115,3 +115,9 @@ After drafting, verify:
 - [ ] Consistent terminology
 - [ ] Concrete examples included
 - [ ] References one level deep
+
+<!--
+Adapted from https://github.com/mattpocock/skills (verbatim)
+Copyright (c) 2026 Matt Pocock — MIT License
+See NOTICES.md in this distribution for the full license text.
+-->
