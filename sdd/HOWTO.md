@@ -8,11 +8,10 @@ A 9-phase workflow that walks you from a vague feature idea to a merged PR, with
 
 ## When to use SDD
 
-- New integrations / connectors / sinks / sources
-- Cross-repo features
-- New protocol or connectivity mode
-- Refactor that changes a contract (trait, public API, RPC)
-- Features touching persistence / data integrity
+- Features that span multiple modules or repos
+- Refactors that change a public API or contract (trait, RPC, schema)
+- Anything that introduces new persistence or schema migrations
+- Features with non-trivial state, concurrency, or correctness requirements
 - Anything > 1 day of work
 
 ## When NOT to use SDD

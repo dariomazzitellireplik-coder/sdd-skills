@@ -10,7 +10,7 @@ Creates the folder, the state.md tracker, and primes the SDD workflow. See `.cla
 ## When invoked
 
 1. **Feature name** (kebab-case): use the argument if provided
-   (`/sdd-init add-snowflake-sink`). If missing, ask the user.
+   (`/sdd-init migrate-auth-service`). If missing, ask the user.
 
 2. **Scope**: single-repo (default) or cross-repo. Ask explicitly:
    - "Does this feature touch only this repo, or multiple repos?"
