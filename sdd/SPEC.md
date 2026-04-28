@@ -155,11 +155,10 @@ Why this pattern instead of something automatic: no SDD framework on the market 
 - Config / env-var changes without code
 
 **Use SDD for:**
-- New integrations / connectors / sinks
-- Cross-repo changes
-- New connectivity / contract / protocol modes
-- Refactors that change a contract (trait, public API)
-- Features touching persistence / data integrity
+- Features that span multiple modules or repos
+- Refactors that change a public API or contract (trait, RPC, schema)
+- Anything that introduces new persistence or schema migrations
+- Features with non-trivial state, concurrency, or correctness requirements
 - Anything bigger than ~1 day of work
 
 ## Composition with knowledge skills

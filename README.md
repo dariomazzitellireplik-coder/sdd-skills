@@ -77,10 +77,10 @@ Full system spec: [`sdd/SPEC.md`](sdd/SPEC.md). Practical how-to: [`sdd/HOWTO.md
 Most coding agents either over-execute (build before understanding) or over-discuss (talk forever, never ship). SDD splits the difference: front-load the depth in phases 1-3, then execute mechanically with verification gates.
 
 It's particularly useful for:
-- New integrations / connectors / sinks
-- Cross-repo features
-- Refactors that change a contract
-- Features touching persistence or data integrity
+- Features that span multiple modules or repos
+- Refactors that change a public API or contract
+- Anything that introduces new persistence or schema migrations
+- Features with non-trivial state, concurrency, or correctness requirements
 - Anything > 1 day of work
 
 It's **not** the right tool for trivial bug fixes, dependency bumps, typos, or mechanical refactors.
